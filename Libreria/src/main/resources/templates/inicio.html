@@ -1,0 +1,106 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="/fragments/head :: head"></head>
+
+    <body>
+        <nav th:replace="/fragments/navbar :: nav" ></nav>
+
+        <header th:replace="/fragments/header :: header"></header>
+        
+        <h1 class=" display-5 text-center titulo">Títulos en Promo</h1>
+        
+        <section class="container" >
+            
+       <div class="card-deck ">
+  <div class="card border border-0">
+    <img src="img/casa-infernal.png" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">Casa Infernal</h5>
+      <p class="card-text">Richard Matheson</p>
+     
+    </div>
+  </div>
+  <div class="card border border-0">
+    <img src="img/pale-horse.jpg" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">El misterio de Pale Horse</h5>
+      <p class="card-text">Agatha Christie</p>
+     
+    </div>
+  </div>
+  <div class="card border border-0">
+    <img src="img/AOE.jpg" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">Asesinato en el Orient Express</h5>
+      <p class="card-text">Agatha Christie</p>
+     
+    </div>
+  </div>
+</div>
+            
+              <div class="card-deck ">
+  <div class="card border border-0">
+    <img src="img/resplandor.jpg" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">El Resplandor</h5>
+      <p class="card-text">Stpehen King</p>
+     
+    </div>
+  </div>
+  <div class="card border border-0">
+    <img src="img/muerte-en-nilo.jpg" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">Muerte en el Nilo</h5>
+      <p class="card-text">Agatha Christie</p>
+     
+    </div>
+  </div>
+  <div class="card border border-0">
+    <img src="img/cdanimales.jpg" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">Cementerio de Animales</h5>
+      <p class="card-text">Stephen King</p>
+     
+    </div>
+  </div>
+</div>
+        
+        </section>
+        
+                    <div class="card cardbh text-center container">
+  <div class="card-body">
+      <h2>Pedilos este mes con 15% de descuento</h2> 
+        <a th:href="@{/libro/listarlibro}" class="btn btn-dark btn-h btn-lg" role="button" aria-pressed="true">Ir a Libros</a>
+
+   
+  </div>
+</div>
+
+             
+<h1 class="display-5 text-center titulo"> Autor del Mes</h1> 
+          
+  <div class="card-body cardbbio text-left">
+      
+      <p class="parrafobio">
+          <strong class="bio">Stephen King</strong>
+          <br>
+    <img class="imgbio" src="img/stephenk.jpg" width="150" high="150" hspace="15" vspace="10">
+ Es un escritor estadounidense de novelas de terror, ficción sobrenatural, misterio, ciencia ficción y literatura fantástica. 
+ Sus libros han vendido más de 350 millones de ejemplares y en su mayoría han sido adaptados al cine y a la televisión. 
+ Ha publicado 61 novelas (siete de ellas, bajo el pseudónimo Richard Bachman) y siete libros de no ficción. 
+ Ha escrito, además, alrededor de doscientos relatos y novelas cortas, la mayoría de los cuales han sido recogidos en once colecciones.
+      
+ </p>
+  </div>
+
+
+        
+        <footer th:replace="/fragments/footer :: footer"></footer>
+        
+        
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

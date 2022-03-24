@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+    <head th:replace="/fragments/head :: head" >  </head>
+
+    <body>
+        
+          <nav th:replace="/fragments/navbar :: nav" ></nav>
+        
+          <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+        <h2 class="display-5"> Registro de usuarios</h2>
+               
+        <form class="formulario" th:action="@{/usuario/registro}" method="POST">
+                          
+                             <div class="container text-left">
+
+		<div th:if="${exito !=null}" class="card text-black bg-info mb-3" >
+			<div class="card-body">
+				<h5 class="card-title"></h5>
+				<p class="card-text display-4" th:text="${exito}"></p>
+			</div>
+		</div>
+		<div th:if="${error !=null}" class="card text-black bg-danger mb-3" >
+			<div class="card-body">
+				<h5 class="card-title">Error</h5>
+				<p class="card-text" th:text="${error}"></p>
+			</div>
+		</div>
+                          
+                <div class="form-group">
+                    <label>DNI</label> <input type="text" class="form-control" name="dni" placeholder=" ">
+                
+                    <label>Nombre y Apellido</label> <input type="text" class="form-control" name="nombreC" placeholder=" ">  
+                              
+                    <label>Numero de Telefono</label> <input type="text" class="form-control" name="telefono" placeholder=" ">
+                                                  
+                    <label>Mail</label> <input type="email" class="form-control" name="mail" placeholder="name@example.com ">
+                                                                  
+                    <label>Clave</label> <input type="password" class="form-control" name="clave" placeholder=" ">
+                    
+                     <label>Repetir Clave</label> <input type="password" class="form-control" name="clave2" placeholder=" ">
+                </div>
+                          
+                                    
+
+
+                  
+                <button type="submit" class="btn btnew btn-lg">Registrar</button>
+            </form>
+                
+                           
+</div>
+          </div>
+              
+
+       
+        
+         
+          <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+ 
+  
+          
+          
+    </body>
+</html>

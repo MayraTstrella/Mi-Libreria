@@ -1,0 +1,72 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Libreria</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/style.css"/>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    </head>
+    <body>
+        
+          <nav th:replace="/fragments/navbar :: nav" ></nav>
+        
+          <header th:replace="/fragments/header :: header"></header>
+          
+          <h1 class="display-5 text-center titulo"> Nuestros Favoritos</h1>
+          
+          <section class="container">     
+              
+<div class="card-deck ">
+  <div class="card border border-0">
+    <img src="img/draculabst.jpg" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">Dracula</h5>
+      <p class="card-text">Bram Stoker</p>
+     
+    </div>
+  </div>
+  <div class="card border border-0">
+    <img src="img/it.jpg" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">It</h5>
+      <p class="card-text">Stephen King</p>
+     
+    </div>
+  </div>
+  <div class="card border border-0">
+    <img src="img/AOE.jpg" class="card-img-top" alt="...">
+    <div class="card-body cardbd">
+      <h5 class="card-title">Asesinato en el Orient Express</h5>
+      <p class="card-text">Agatha Christie</p>
+     
+    </div>
+  </div>
+</div>
+              
+          </section>
+      
+<h1 class="display-5 text-center titulo"> Autor del Mes</h1> 
+          
+  <div class="card-body cardbbio text-left">
+      
+      <p class="parrafobio">
+          <strong class="bio">Stephen King</strong>
+          <br>
+    <img class="imgbio" src="img/stephenk.jpg" width="150" high="150" hspace="15" vspace="10">
+ Es un escritor estadounidense de novelas de terror, ficción sobrenatural, misterio, ciencia ficción y literatura fantástica. 
+ Sus libros han vendido más de 350 millones de ejemplares y en su mayoría han sido adaptados al cine y a la televisión. 
+ Ha publicado 61 novelas (siete de ellas, bajo el pseudónimo Richard Bachman) y siete libros de no ficción. 
+ Ha escrito, además, alrededor de doscientos relatos y novelas cortas, la mayoría de los cuales han sido recogidos en once colecciones.
+      
+ </p>
+  </div>
+
+
+      <footer th:replace="/fragments/footer :: footer"></footer>
+        
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    </body>
+</html>

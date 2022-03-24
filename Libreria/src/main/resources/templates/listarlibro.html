@@ -1,0 +1,93 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+    <head th:replace="/fragments/head :: head"></head>
+
+    <body>
+
+        <nav th:replace="/fragments/navbar :: nav" ></nav>
+        
+              <div class="container text-left">
+        
+          <div th:if="${exito !=null}" class="card text-white bg-info mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Exito</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+
+   
+        <div class="table-responsive-sm tablas">
+   
+                <table class="table table-borderless">
+                <thead>
+                    <tr>
+                  
+                        <th scope="col">Isbn</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Foto</th>
+                         <th scope="col">Autor</th>
+                        <th scope="col">Editorial</th>
+                        <th scope="col">Prestamo</th>
+                        <th scope="col">Ejemplares</th>
+<!--                        <th scope="col">Ejemplares Prestados</th>
+                        <th scope="col">Ejemplares Restantes</th>-->
+<!--                        <th scope="col">Modificar</th>-->
+                      
+
+                    </tr>
+                </thead>
+                <tbody th:each="libro : ${libros} ">
+
+                    <tr>
+                       <!-- <th scope="row" th:text="${libro.id}"> </th> -->
+                        <td th:text="${libro.isbn}"> </td>
+                        <td th:text="${libro.titulo}"> </td>
+                        <td th:text="${libro.anio}"> </td>
+     
+                        <td><img class="bd-placeholder-img card-img-top" th:src="${'/foto/libro/' + libro.id}" style="width: auto; height: 80px;"></td> 
+                         <td th:text="${libro.autor.nombre}"> </td>
+                        <td th:text="${libro.editorial.nombre}"> </td>
+                        
+
+                                                                                                       
+                        <td> 
+                            <a class="btn btn-info" th:href="@{/prestamo/registro/__${libro.id}__}" role="button">Pedir</a>
+                           
+                        </td>
+                        <td th:text="${libro.ejemplares}"> </td>
+<!--                         <td th:text="${libro.ejemplaresPrestados}"> </td>
+                          <td th:text="${libro.ejemplaresRestantes}"> </td>-->
+
+<!--                       <td> 
+                          
+                           <a class="btn btn-outline-success" sec:authorize="hasRole('ADMIN')" th:href="@{/libro/alta/__${libro.id}__}" role="button">Alta</a>
+                           <a class="btn btn-outline-danger" sec:authorize="hasRole('ADMIN')" th:href="@{/libro/baja/__${libro.id}__}" role="button">Baja</a>                          
+                          <a class="btn btn-outline-secondary" sec:authorize="hasRole('ADMIN')" th:href="@{/libro/modificar/__${libro.id}__}" role="button">Editar</a>
+
+                        </td>-->
+
+
+                    </tr>
+                    <tr>
+                        <th scope="row"> </th>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                 
+                </tbody>
+            </table>
+
+        </div>
+
+        <a href="/inicio" class="btn btn-primary btn-lg active btn btn-dark" role="button" aria-pressed="true">Volver</a>
+
+              </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    </body>
+</html>

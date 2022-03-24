@@ -1,0 +1,164 @@
+.navbar {
+    font-family: cursive;
+    font-size: larger;
+    
+}
+
+.navbar-brand{
+    color: #FF6363 !important;
+    font-family: cursive;
+    font-size: larger;
+    font-weight: bold;
+}
+
+
+.dropdown-menu {
+    background-color: #B983FF !important;
+}
+
+
+.dropdown-item {
+    color: #B983FF !important;
+    background-color: #222831 !important;
+      font-size: larger;
+}
+
+.nav-link{
+    color: #B983FF !important;
+   
+}
+
+h1{
+    font-family: cursive;
+}
+
+.cardbh {
+     background-color: #FF6363 !important;
+}
+
+body {
+    background-color: #B983FF !important;
+}
+
+.card{
+    font-family: cursive;
+   
+}
+
+.container {
+    flex-direction: inherit;
+}
+
+
+.card-deck {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cardbbio {
+     background-color: #FF6363 !important;
+     font-family: cursive;
+     font-size: large;
+}
+
+.cardbd {
+    background-color: #FF6363 !important;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.nombrec {
+    font-weight: bolder;
+    font-size: larger;
+    color: #B983FF;
+}
+
+footer{
+    margin-top: 10px;
+}
+
+.cardbf {
+    background-color: #151515 !important;
+     color: #B983FF;
+
+}
+
+.btn-h {
+     color: #B983FF !important;
+/*     background-color: #151515 !important;*/
+     
+}
+
+.btnew {
+     color: #151515 !important;
+     background-color: #FF6363 !important;
+     font-family: cursive;
+     font-weight: bold !important;
+}
+
+
+.footerhead {
+    list-style: none;  
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}  
+
+.footerhead > li {
+    margin: 15px;
+}
+
+
+.footerbody {
+    color: #FF6363;
+    list-style: none;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.footerbody > li {
+    margin: 15px;
+}
+
+.tablas {
+    font-family: cursive;
+    color: #B983FF;
+}
+
+.tableadmin {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.theads {
+    background-color: #FF6363 !important;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: cursive;
+    color: #222831;
+}
+
+.formulario {
+    font-family: cursive;
+}
+
+.titulo {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.imgbio {
+    float: left;
+}
+
+.bio {
+    font-weight: bolder;
+    font-size: larger;
+}
+
+

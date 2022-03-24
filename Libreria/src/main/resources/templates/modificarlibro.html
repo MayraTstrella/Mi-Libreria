@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/fragments/head :: head"> </head>
+    <body>
+        <nav th:replace="/fragments/navbar :: nav" ></nav>
+
+         
+      <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+
+            <div th:if="${exito !=null}" class="card text-white bg-info mb-3" >
+                <div class="card-body">
+                    <h5 class="card-title">Exito</h5>
+                    <p class="card-text" th:text="${exito}"></p>
+                </div>
+            </div>
+            <div th:if="${error !=null}" class="card text-white bg-danger mb-3" >
+                <div class="card-body">
+                    <h5 class="card-title">Error</h5>
+                    <p class="card-text" th:text="${error}"></p>
+                </div>
+            </div>                               
+           
+            <h2>Editar libro </h2>
+          
+
+            <form class="formulario" th:action="@{'/libro/modificar/' + ${id}}" method="POST" enctype="multipart/form-data" >
+                     <input type="hidden" th:value= "${id}" name="id">
+                    
+                             <div class="container">
+                    <div class="form-group">
+                        <label>Isbn</label> <input type="text" class="form-control" name="isbn" placeholder=" ">
+                    
+                        <label>Titulo</label> <input type="text" class="form-control" name="titulo" placeholder=" ">
+            
+                        <label>Año</label> <input type="text" class="form-control" name="anio" placeholder=" ">
+                    
+                        <label>Ejemplares</label> <input type="number" class="form-control" name="ejemplares" placeholder=" ">
+                              
+                       <label>Foto</label> <input type="file" class="form-control" name="archivo" placeholder=" ">
+                                 
+                        <label>Ejemplares Prestados</label> <input type="number" class="form-control" name="ejemplaresPrestados" placeholder=" ">
+           
+                        <label>Ejemplares Restantes</label> <input type="number" class="form-control" name="ejemplaresRestantes" placeholder=" ">
+                
+                        <label > Seleccionar Autor</label>
+                        <select class="form-control" name="idAutor">
+                            <option th:each="autor : ${autores}" th:value="${autor.id}" th:text="${autor.nombre}" ></option>
+
+                        </select>
+          
+                        <label > Seleccionar Editorial</label>
+                        <select class="form-control" name="idEditorial">
+                            <option th:each="editorial : ${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}" ></option>
+
+                        </select>
+                    </div>
+
+
+                    <button type="submit" class="btn btnew btn-lg">Modificar</button>
+                </form>
+            
+        </div>
+          </div>
+          
+
+                <a th:href="@{/admin/dashboard}" class="btn btn-primary btn-lg active btn btn-dark" role="button" aria-pressed="true">Volver</a>
+
+                
+                  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  
+                </body>
+                </html>

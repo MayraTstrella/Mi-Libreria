@@ -1,0 +1,18 @@
+
+<header >
+    <div class="card text-dark border-0 ">
+<!--  <h5 class="card-header"></h5>-->
+  <div class="card-body cardbh text-center border-0">
+    <h2 class="card-title display-5">Disfrutá de los beneficios, descuentos y regalos especiales todos los meses!</h2>
+  
+      <h2 class="card-title display-4 nombrec" th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombreC}"></h2>
+ 
+     <a href="usuario/registro" th:if="${session.usuariosession == null}"class="btn btn-dark btn-h btn-lg">Registrate</a> 
+
+  </div>
+</div>
+  
+</header>
+
+
+<!--class="masthead-subheading mb-0"-->

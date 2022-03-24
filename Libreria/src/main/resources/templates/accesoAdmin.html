@@ -1,0 +1,236 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="/fragments/head :: head"></head>
+
+    <body>
+        <nav th:replace="/fragments/navbar :: nav" ></nav>
+         
+              <div class="tablas tableadmin">
+           
+           <h2 class="display-5 text-center titulo">Administración</h2>
+
+           <br>
+        <h2>Usuarios</h2>
+
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead class="theads">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Nombre y Apellido</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">E-Mail</th> 
+                        <th scope="col">Alta</th> 
+                        <th scope="col">Tipo</th>
+                    </tr>
+                </thead>
+                <tbody th:each="usuario : ${usuarios} ">
+
+                    <tr>
+                        <th scope="row" th:text="${usuario.id}"> </th>
+                        <td th:text="${usuario.dni}"> </td>
+                        <td th:text="${usuario.nombreC}"> </td>
+                        <td th:text="${usuario.telefono}"> </td>
+                        <td th:text="${usuario.mail}"> </td>
+                        <td>  
+                            <a class="btn btn-success" th:href="@{/admin/alta/__${usuario.id}__}" role="button">Alta</a> 
+                            <a class="btn btn-danger" th:href="@{/admin/baja/__${usuario.id}__}" role="button">Baja</a>
+                        </td>
+                        
+                       <td th:text="${usuario.rol}"></td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row"> </th>
+                        <td> </td>
+                        <td> </td>
+
+               
+                </tbody>
+            </table>
+
+        </div>
+
+        <h2>Prestamos</h2>
+
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead class="theads">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Fecha Prestamo</th>
+                        <th scope="col">Fecha Devolucion</th>
+                        <th scope="col">Libro</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Alta</th>
+                    </tr>
+                </thead>
+                <tbody th:each="prestamo : ${prestamos} ">
+
+                    <tr>
+                        <th scope="row" th:text="${prestamo.id}"> </th>
+                        <td th:text="${prestamo.fechaPrestamo}"> </td>
+                        <td th:text="${prestamo.fechaDev}"> </td>
+                        <td th:text="${prestamo.libro.titulo}"> </td>
+                        <td th:text="${prestamo.usuario.nombreC}"> </td>
+                        <td> <a class="btn btn-success" th:href="@{/admin/altap/__${prestamo.id}__}" role="button">Alta</a>
+
+                            <a class="btn btn-danger" th:href="@{/admin/bajap/__${prestamo.id}__}" role="button">Baja</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> </th>
+                        <td> </td>
+                        <td> </td>
+
+                    </tr>
+             
+                </tbody>
+            </table>
+
+        </div>
+        
+        <h2>Libros</h2>
+        
+               <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead class="theads">
+                    <tr>
+                       <th scope="col">Id</th> 
+                        <th scope="col">Isbn</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Foto</th>
+                         <th scope="col">Autor</th>
+                        <th scope="col">Editorial</th>
+                        <th scope="col">Prestamo/Devolución</th>
+                        <th scope="col">Ejemplares</th>
+                        <th scope="col">Ejemplares Prestados</th>
+                        <th scope="col">Ejemplares Restantes</th>
+                        <th scope="col">Modificar</th>
+
+                    </tr>
+        
+                        </thead>
+                <tbody th:each="libro : ${libros} ">
+
+                    <tr>
+                        <th scope="row" th:text="${libro.id}"> </th> 
+                        <td th:text="${libro.isbn}"> </td>
+                        <td th:text="${libro.titulo}"> </td>
+                        <td th:text="${libro.anio}"> </td>
+     
+                        <td><img class="bd-placeholder-img card-img-top" th:src="${'/foto/libro/' + libro.id}" style="width: auto; height: 80px;"></td> 
+                         <td th:text="${libro.autor.nombre}"> </td>
+                        <td th:text="${libro.editorial.nombre}"> </td>
+                        
+                        <td> 
+                            <a class="btn btn-info" th:href="@{/prestamo/registro/__${libro.id}__}" role="button">Pedir</a>
+                                   <a class="btn btn-danger" th:href="@{/libro/devolucion/__${libro.id}__}" role="button">Devolución</a>
+                       
+                        </td>
+                        <td th:text="${libro.ejemplares}"> </td>
+                         <td th:text="${libro.ejemplaresPrestados}"> </td>
+                          <td th:text="${libro.ejemplaresRestantes}"> </td>
+
+                       <td> 
+<!--                            sec:authorize="hasRole('ADMIN')"-->
+                           <a class="btn btn-success" th:href="@{/libro/alta/__${libro.id}__}" role="button">Alta</a>
+                           <a class="btn btn-danger"  th:href="@{/libro/baja/__${libro.id}__}" role="button">Baja</a>
+                           <a class="btn btn-warning" th:href="@{/libro/modificar/__${libro.id}__}" role="button">Editar</a>
+                          
+                        </td>                                                    
+
+                    </tr>
+                    <tr>
+                        <th scope="row"> </th>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+            
+                </tbody>
+            </table>
+
+                  </div>
+        
+        
+        <h2>Autores</h2>
+        
+                <div class="table-responsive">
+      <table class="table table-borderless">
+  <thead class="theads">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Modificar</th> 
+        </tr>
+  </thead>
+  <tbody th:each="autor : ${autores} ">
+       
+    <tr>
+      <th scope="row" th:text="${autor.id}"> </th>
+      <td th:text="${autor.nombre}"> </td>
+      <td>   
+          <a class="btn btn-success" th:href="@{/autor/alta/__${autor.id}__}" role="button">Alta</a>
+          <a class="btn btn-danger" th:href="@{/autor/baja/__${autor.id}__}" role="button">Baja</a>
+                                                                      
+      </td>
+   
+    </tr>
+    <tr>
+        <th scope="row"> </th>
+      <td> </td>
+      <td> </td>
+  
+    </tr>
+
+  </tbody>
+</table>
+
+            </div>
+        
+        <h2>Editoriales</h2>
+        
+              <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead class="theads" >
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Modificar</th> 
+                    </tr>
+                </thead>
+                <tbody th:each="editorial : ${editoriales} ">
+
+                    <tr>
+                        <th scope="row" th:text="${editorial.id}"> </th>
+                        <td th:text="${editorial.nombre}"> </td>
+                        <td>  
+                            <a class="btn btn-success"  th:href="@{/editorial/alta/__${editorial.id}__}" role="button">Alta</a>
+                            <a class="btn btn-danger"  th:href="@{/editorial/baja/__${editorial.id}__}" role="button">Baja</a>
+                                         
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row"> </th>
+                        <td> </td>
+                        <td> </td>
+
+                    </tr>
+            
+                </tbody>
+            </table>
+
+        </div>
+        
+              </div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    </body>

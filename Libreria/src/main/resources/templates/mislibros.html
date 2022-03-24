@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="/fragments/head :: head"></head>
+
+    <body>
+        <nav th:replace="/fragments/navbar :: nav" ></nav>
+
+        <header th:replace="/fragments/header :: header"></header>
+        
+              <div class="container ">
+                  
+               
+                  <h1 class="display-4">Mis Libros</h1>
+                  
+                        <table class="table table-striped table-dark">
+                <thead >
+                    <tr>
+                        <th scope="col">Fecha Prestamo</th>
+                        <th scope="col">Fecha Devolucion</th>
+                        <th scope="col">Libro</th>
+                   
+                
+                    </tr>
+                    
+                          </thead>
+                <tbody th:each="prestamo : ${prestamos} ">
+
+                    <tr>
+                         <td class="bg-info" th:text="${prestamo.fechaPrestamo}"> </td>
+                        <td class="bg-info" th:text="${prestamo.fechaDev}"> </td>
+                        <td class="bg-info" th:text="${prestamo.libro.titulo}"> </td>
+                         <td class="bg-info" >  <a class="btn btn-outline-dark disabled" th:href="..." role="button">Leer</a>
+ </td>
+                   
+            
+                        
+                    </tr>
+                </tbody>
+                        </table>
+              </div>
+               
+          <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    </body>
