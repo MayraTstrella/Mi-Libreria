@@ -43,13 +43,13 @@ public class EditorialControlador {
     }
     
       @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/modificared/{id}")
+    @GetMapping("/modificar/{id}")
     public String modificarEd(ModelMap modelo, @PathVariable String id) throws ErrorServicio{
         
         try {
-            modelo.addAttribute("autor", eservicio.buscarEditID(id));
-        } catch (Exception e) {
-            throw new ErrorServicio(e.getMessage());
+            modelo.put("autor", eservicio.buscarEditID(id));
+        } catch (ErrorServicio ex) {
+            throw new ErrorServicio(ex.getMessage());
         }
         return "modificareditorial";
     }
@@ -62,7 +62,8 @@ public class EditorialControlador {
             eservicio.modificarEd(id, nombre);
             modelo.put("exito", "Modificación exitosa");
             return "redirect:/admin/dashboard";
-        } catch (ErrorServicio e) {
+        } catch (ErrorServicio ex) {
+            modelo.put("error", ex.getMessage());
             return "accesoAdmin";
         }
     }

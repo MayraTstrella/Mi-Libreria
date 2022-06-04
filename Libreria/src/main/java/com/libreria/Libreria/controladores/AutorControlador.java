@@ -21,7 +21,7 @@ public class AutorControlador {
     @Autowired
     private AutorServicios aservicio;
 
-    
+ 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/registro")
     public String formulario() {
@@ -44,13 +44,15 @@ public class AutorControlador {
 
     }
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/modificarau/{id}")
+    @GetMapping("/modificar/{id}")
     public String modificarAu(ModelMap modelo, @PathVariable String id) throws ErrorServicio{
         
         try {
-            modelo.addAttribute("autor", aservicio.buscarAutorID(id));
-        } catch (Exception e) {
-            throw new ErrorServicio(e.getMessage());
+            modelo.put("autor", aservicio.buscarAutorID(id));
+         
+        } catch (ErrorServicio ex) {
+            throw new ErrorServicio(ex.getMessage());
+           
         }
         return "modificarautor";
     }
@@ -63,11 +65,12 @@ public class AutorControlador {
             aservicio.modificarAutor(id, nombre);
             modelo.put("exito", "Modificación exitosa");
             return "redirect:/admin/dashboard";
-        } catch (ErrorServicio e) {
+        } catch (ErrorServicio ex) {
+            modelo.put("error", ex.getMessage());
             return "accesoAdmin";
         }
     }
-
+   
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
     @GetMapping("/listarautor")
     public String lista(ModelMap modelo) {

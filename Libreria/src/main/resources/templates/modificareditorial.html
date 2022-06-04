@@ -10,8 +10,10 @@
           <div class="p-5">
               <h2 class="display-5"> Ingrese nombre de la Editorial</h2>
           
-                 
-              <form class="formulario" th:action="@{/editorial/registro}" method="POST">
+                      <form class="formulario" th:action="@{'/editorial/modificar/' + ${id}}" method="POST">
+                                 <input type="hidden" th:value="${id}" name="id">
+              
+              
                        <div class="container text-left">
 
 		<div th:if="${exito !=null}" class="card text-black bg-info mb-3" >
@@ -37,7 +39,7 @@
             </form>
               
 </div>
-                  <br>
+                                 <br>
             
                <a href="/admin/dashboard" class="btn btn-primary btn-lg active btn btn-dark" role="button" aria-pressed="true">Volver</a>
        
