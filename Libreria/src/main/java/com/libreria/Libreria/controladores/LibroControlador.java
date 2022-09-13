@@ -3,16 +3,13 @@ package com.libreria.Libreria.controladores;
 import com.libreria.Libreria.entidades.Autor;
 import com.libreria.Libreria.entidades.Editorial;
 import com.libreria.Libreria.entidades.Libro;
-import com.libreria.Libreria.entidades.Usuario;
 import com.libreria.Libreria.errores.ErrorServicio;
 import com.libreria.Libreria.servicios.AutorServicios;
 import com.libreria.Libreria.servicios.EditorialServicios;
 import com.libreria.Libreria.servicios.LibroServicios;
-
 import java.util.List;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/libro")
@@ -100,7 +97,7 @@ public class LibroControlador {
             lservicio.modificarLibro(archivo, id, isbn, titulo, anio, ejemplares, ejemplaresPrestados, ejemplaresRestantes, idAutor, idEditorial);
             modelo.put("exito", "Modificacion exitosa");
             
-            return "listarlibro";
+            return "redirect:/admin/dashboard";
             
         } catch (ErrorServicio ex) {
              List<Autor> autores = aservicio.listarTodos();
@@ -153,10 +150,11 @@ public class LibroControlador {
     
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
     @GetMapping("/listarlibro")
-    public String lista(ModelMap modelo) {
+    public String lista(ModelMap modelo, @Param("palabra") String palabra) {
 
-        List<Libro> librosLista = lservicio.listarTodos();
-        modelo.put("libros", librosLista);
+        List<Libro> listaBuscar = lservicio.listarTodos(palabra);
+        modelo.put("buscar", listaBuscar);
+        modelo.put("palabra", palabra);
 
         return "listarlibro";
     }

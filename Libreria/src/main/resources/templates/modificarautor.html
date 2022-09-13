@@ -9,9 +9,9 @@
              
                <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-              <h2 class="display-5"> Ingrese nombre del Autor</h2>
+              <h2 class="display-5"> Modificar Autor</h2>
              
-         
+              <br>
                              <form class="formulario" th:action="@{'/autor/modificar/' + ${id}}" method="POST">
                                  <input type="hidden" th:value="${id}" name="id">
                           
@@ -20,7 +20,7 @@
 		<div th:if="${exito !=null}" class="card text-black bg-info mb-3" >
 			<div class="card-body">
 				<h5 class="card-title"></h5>
-				<p class="card-text display-4" th:text="${exito}"></p>
+				<p class="card-text" th:text="${exito}"></p>
 			</div>
 		</div>
 		<div th:if="${error !=null}" class="card text-black bg-danger mb-3" >
@@ -32,7 +32,7 @@
                              
                                 
                 <div class="form-group">
-                    <label></label> <input type="text" class="form-control" name="nombre" placeholder="Nombre del Autor">
+                    <label></label> <input type="text" class="form-control" name="nombre" th:value="${autor.nombre}">
                 </div>
                                
                        <button type="submit" class="btn btnew btn-lg">Registrar</button>

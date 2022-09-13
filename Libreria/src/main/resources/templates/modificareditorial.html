@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="/fragments/head :: head" >  </head>
@@ -8,8 +7,8 @@
           
                <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-              <h2 class="display-5"> Ingrese nombre de la Editorial</h2>
-          
+              <h2 class="display-5"> Modificar Editorial</h2>
+              <br>
                       <form class="formulario" th:action="@{'/editorial/modificar/' + ${id}}" method="POST">
                                  <input type="hidden" th:value="${id}" name="id">
               
@@ -19,7 +18,7 @@
 		<div th:if="${exito !=null}" class="card text-black bg-info mb-3" >
 			<div class="card-body">
 				<h5 class="card-title"></h5>
-				<p class="card-text display-4" th:text="${exito}"></p>
+				<p class="card-text" th:text="${exito}"></p>
 			</div>
 		</div>
 		<div th:if="${error !=null}" class="card text-black bg-danger mb-3" >
@@ -30,8 +29,8 @@
 		</div>
                     
                 <div class="form-group">                  
-                  
-                    <label></label> <input type="text" class="form-control" name="nombre" placeholder="Nombre de la Editorial ">
+                                                                                                                                                   
+                    <label></label> <input type="text" class="form-control" name="nombre"  th:value="${editorial.nombre}">
               
                 </div>
 

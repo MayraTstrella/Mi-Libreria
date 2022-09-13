@@ -98,6 +98,13 @@ footer{
      font-weight: bold !important;
 }
 
+.btfc {
+    color: #151515 !important;
+    background-color: aqua !important;
+    font-family: cursive;
+    font-weight: bold !important;
+}
+
 
 .footerhead {
     list-style: none;  
@@ -146,6 +153,12 @@ h2 {
 .formulario {
     font-family: cursive;
 }
+
+.form-control {
+    border-color: #FF6363 !important;
+    box-shadow: none !important;
+}
+
 
 .titulo {
     margin-top: 30px;

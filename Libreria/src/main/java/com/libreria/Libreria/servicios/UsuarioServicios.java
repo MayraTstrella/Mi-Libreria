@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.libreria.Libreria.repositorio.UsuarioRepositorio;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class UsuarioServicios  implements UserDetailsService {
     @Autowired
     private UsuarioRepositorio urepositorio;
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Error.class})
+    @Transactional
     public Usuario guardarUsuario(Long dni, String nombreC, String telefono, String mail, String clave, String clave2) throws ErrorServicio {
 
         validarDatos(dni, nombreC, telefono, mail, clave, clave2);
@@ -47,7 +46,7 @@ public class UsuarioServicios  implements UserDetailsService {
         return urepositorio.save(usuario);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Error.class})
+    @Transactional
     public Usuario modificarUsuario(String id, Long dni, String nombreC, String telefono, String mail, String clave, String clave2) throws ErrorServicio {
 
         validarDatos(dni, nombreC, telefono, mail, clave, clave2);
@@ -89,7 +88,7 @@ public class UsuarioServicios  implements UserDetailsService {
 
     @Transactional(readOnly = true)
     public List<Usuario> listarTodos() {
-        return urepositorio.findAll();
+        return urepositorio.findAllActive();
     }
     
     

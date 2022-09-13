@@ -48,11 +48,12 @@ public class AutorControlador {
     public String modificarAu(ModelMap modelo, @PathVariable String id) throws ErrorServicio{
         
         try {
-            modelo.put("autor", aservicio.buscarAutorID(id));
+            Autor autor = aservicio.buscarAutorID(id);
+            modelo.put("autor", autor);
          
         } catch (ErrorServicio ex) {
-            throw new ErrorServicio(ex.getMessage());
-           
+           modelo.put("error", ex.getMessage());
+
         }
         return "modificarautor";
     }
@@ -62,11 +63,14 @@ public class AutorControlador {
     public String modificarAu(ModelMap modelo, @PathVariable String id, @RequestParam String nombre) {
         
         try {
-            aservicio.modificarAutor(id, nombre);
+            Autor autor = aservicio.buscarAutorID(id);
+            aservicio.modificarAutor(autor.getId(), nombre);
+            modelo.put("autor", autor);
             modelo.put("exito", "Modificación exitosa");
             return "redirect:/admin/dashboard";
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
+            modelo.put("nombre", nombre);
             return "accesoAdmin";
         }
     }

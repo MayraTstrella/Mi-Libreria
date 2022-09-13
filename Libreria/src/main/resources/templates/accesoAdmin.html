@@ -41,12 +41,7 @@
                        <td th:text="${usuario.rol}"></td>
 
                     </tr>
-                    <tr>
-                        <th scope="row"> </th>
-                        <td> </td>
-                        <td> </td>
 
-               
                 </tbody>
             </table>
 
@@ -79,13 +74,7 @@
                             <a class="btn btn-danger" th:href="@{/admin/bajap/__${prestamo.id}__}" role="button">Baja</a>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row"> </th>
-                        <td> </td>
-                        <td> </td>
 
-                    </tr>
-             
                 </tbody>
             </table>
 
@@ -93,6 +82,11 @@
         
         <h2>Libros</h2>
         
+        <form class="form-inline" th:action="@{/admin/dashboard}">
+    <input class="form-control mr-sm-2" type="text" name="palabra" id="palabra" th:value="${palabra}" placeholder="Ingrese título, autor o editorial" aria-label="Search">
+    <button class="btn btn-info btfc my-2 my-sm-0" type="submit">Filtrar</button>
+      </form>
+        <br>
                <div class="table-responsive">
             <table class="table table-borderless">
                 <thead class="theads">
@@ -135,7 +129,7 @@
                           <td th:text="${libro.ejemplaresRestantes}"> </td>
 
                        <td> 
-<!--                            sec:authorize="hasRole('ADMIN')"-->
+
                            <a class="btn btn-success" th:href="@{/libro/alta/__${libro.id}__}" role="button">Alta</a>
                            <a class="btn btn-danger"  th:href="@{/libro/baja/__${libro.id}__}" role="button">Baja</a>
                            <a class="btn btn-warning" th:href="@{/libro/modificar/__${libro.id}__}" role="button">Editar</a>
@@ -143,13 +137,7 @@
                         </td>                                                    
 
                     </tr>
-                    <tr>
-                        <th scope="row"> </th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-            
+
                 </tbody>
             </table>
 
@@ -177,17 +165,9 @@
           <a class="btn btn-danger" th:href="@{/autor/baja/__${autor.id}__}" role="button">Baja</a>
          <a class="btn btn-warning" th:href="@{/autor/modificar/__${autor.id}__}" role="button">Editar</a>
                            
-          
       </td>
    
     </tr>
-    <tr>
-        <th scope="row"> </th>
-      <td> </td>
-      <td> </td>
-  
-    </tr>
-
   </tbody>
 </table>
 
@@ -213,18 +193,11 @@
                             <a class="btn btn-success"  th:href="@{/editorial/alta/__${editorial.id}__}" role="button">Alta</a>
                             <a class="btn btn-danger"  th:href="@{/editorial/baja/__${editorial.id}__}" role="button">Baja</a>
                             <a class="btn btn-warning" th:href="@{/editorial/modificar/__${editorial.id}__}" role="button">Editar</a>
-                          
-                            
+     
                         </td>
 
                     </tr>
-                    <tr>
-                        <th scope="row"> </th>
-                        <td> </td>
-                        <td> </td>
 
-                    </tr>
-            
                 </tbody>
             </table>
 

@@ -1,16 +1,16 @@
-<!-- Navbar -->
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
- 
-  <a class="navbar-brand" th:href="@{/inicio}">Libreria</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon "></span>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+  <a class="navbar-brand" th:href="@{/}">Libreria</a>
+  <a class="nav-link" th:if="${session.usuariosession != null}" href="/inicio">Inicio</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse " id="navbarNavDropdown">
-      
-    <ul class="navbar-nav">
-        
-        <li class="nav-item ">
+
+ <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto "> 
+ 
+         <li class="nav-item ">
            <a class="nav-link" th:href="@{/libro/listarlibro}">Libros</a>
               </li>
         <li class="nav-item ">
@@ -19,36 +19,32 @@
          <li class="nav-item ">
         <a class="nav-link" th:href="@{/editorial/listareditorial}">Editoriales</a>
               </li>
+        
+        
      
-<!--        </div>-->
-      </li>
-    
-    
-<!--    Botones de acceso Usuario -->
-
-
-   <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 </svg>
         </a>
-        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/login" th:if="${session.usuariosession == null}">Ingresar</a>         
+          
+          
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+           
+         <a class="dropdown-item" href="/login" th:if="${session.usuariosession == null}">Ingresar</a>         
           <a class="dropdown-item" sec:authorize="hasRole('USUARIO')" th:href="@{/prestamo/mislibros}"  th:if="${session.usuariosession != null}">Mis Libros</a>
           <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/admin/dashboard}">Admin</a>
-           <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/libro/registro/}"  >Cargar Libro</a>
-           <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/autor/registro/}" >Cargar Autor</a>
-            <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/editorial/registro/}" >Cargar Editorial</a>
-           <a class="dropdown-item" th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}" th:if="${session.usuariosession != null}">Actualizar Perfil</a>
-          <a class="dropdown-item" href="/logout" th:if="${session.usuariosession != null}">Salir</a>
-   </li>
-       
+          <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/libro/registro/}"  >Cargar Libro</a>
+          <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/autor/registro/}" >Cargar Autor</a>
+          <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/editorial/registro/}" >Cargar Editorial</a>
+          <a class="dropdown-item" th:href="@{/usuario/modificar(id=__${session.usuariosession.id}__)}" th:if="${session.usuariosession != null}">Actualizar Perfil</a>
+<!--         th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__)}"-->
+          <a class="dropdown-item" href="/logout" th:if="${session.usuariosession != null}">Salir</a>  </div>
+      </li>
+   
     </ul>
-
-</div>
-      
-
+   
+  </div>
 </nav>
-
-    
+        

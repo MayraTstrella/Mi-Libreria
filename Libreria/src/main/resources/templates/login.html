@@ -7,7 +7,6 @@
         
             <nav th:replace="/fragments/navbar :: nav" ></nav>
             
-<!--               <header th:replace="/fragments/header :: header"></header>-->
             
         
          <div class="col-lg-6 order-lg-1">
@@ -55,7 +54,7 @@
     <button type="submit" class="btn btnew btn-lg">Ingresar</button>
   </form>
   <div class="dropdown-divider"></div>
-  <a class="dropdown-item" href="/usuario/registro">No tenes cuenta? Registrate</a>
+  <a class="dropdown-item" th:href="@{/usuario/registro}">No tenes cuenta? Registrate</a>
 <!--  <a class="dropdown-item" href="#">Forgot password?</a>-->
 </div>
    

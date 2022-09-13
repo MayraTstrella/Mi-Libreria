@@ -12,6 +12,7 @@ import com.libreria.Libreria.servicios.PrestamoServicios;
 import com.libreria.Libreria.servicios.UsuarioServicios;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,13 +39,13 @@ public class AdminControlador {
     private EditorialServicios eservicio;
     
     @GetMapping("/dashboard")
-    public String accesoAdmin(ModelMap modelo) {
+    public String accesoAdmin(ModelMap modelo, @Param("palabra") String palabra) {
         
         List<Usuario> usuarios = uservicio.listarTodos();
            
         List<Prestamo> prestamos = pservic.listarTodosAlta(true);
         
-        List<Libro> librosLista = lservicio.listarTodos();
+        List<Libro> librosLista = lservicio.listarTodos(palabra);
          
         List<Autor> autoresLista = aservicio.listarTodos();
          
@@ -53,6 +54,7 @@ public class AdminControlador {
         modelo.put("usuarios", usuarios);
         modelo.put("prestamos", prestamos);
         modelo.put("libros", librosLista);
+        modelo.put("palabra", palabra);
         modelo.put("autores", autoresLista);
         modelo.put("editoriales", editorialesLista);
         

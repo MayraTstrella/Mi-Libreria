@@ -22,8 +22,7 @@ public class Controlador {
 
     @GetMapping(" / ")
     public String index(ModelMap modelo) {
-        List<Usuario> usuariosActivos = uservicio.listarTodos();   // cambio put x attributte
-        modelo.addAttribute("usuarios", usuariosActivos);
+
         return "index";
     }
 
@@ -31,8 +30,8 @@ public class Controlador {
     @GetMapping("/inicio")
     public String inicio(ModelMap modelo) {
 
-        List<Usuario> usuarios = uservicio.listarTodos();
-        modelo.addAttribute("usuarios", usuarios);
+//        List<Usuario> usuarios = uservicio.listarTodos();
+//        modelo.addAttribute("usuarios", usuarios);
        
         return "inicio";
     }

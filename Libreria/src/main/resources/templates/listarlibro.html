@@ -17,7 +17,14 @@
             </div>
         </div>
 
-   
+                  <br>
+   <form class="form-inline" th:action="@{/libro/listarlibro}">
+    <input class="form-control mr-sm-2" type="text" name="palabra" id="palabra" th:value="${palabra}" placeholder="Ingrese título, autor o editorial" aria-label="Search">
+    <button class="btn btn-control my-2 my-sm-0" type="submit">Filtrar</button>
+  
+      </form>
+                  <br>
+
         <div class="table-responsive-sm tablas">
    
                 <table class="table table-borderless">
@@ -32,52 +39,31 @@
                         <th scope="col">Editorial</th>
                         <th scope="col">Prestamo</th>
                         <th scope="col">Ejemplares</th>
-<!--                        <th scope="col">Ejemplares Prestados</th>
-                        <th scope="col">Ejemplares Restantes</th>-->
-<!--                        <th scope="col">Modificar</th>-->
-                      
-
+                        <th scope="col">Ejemplares Prestados</th>
+                        <th scope="col">Ejemplares Restantes</th>
+     
                     </tr>
                 </thead>
-                <tbody th:each="libro : ${libros} ">
+                <tbody th:each="libro : ${buscar} ">
 
                     <tr>
-                       <!-- <th scope="row" th:text="${libro.id}"> </th> -->
+                 
                         <td th:text="${libro.isbn}"> </td>
                         <td th:text="${libro.titulo}"> </td>
                         <td th:text="${libro.anio}"> </td>
-     
                         <td><img class="bd-placeholder-img card-img-top" th:src="${'/foto/libro/' + libro.id}" style="width: auto; height: 80px;"></td> 
                          <td th:text="${libro.autor.nombre}"> </td>
                         <td th:text="${libro.editorial.nombre}"> </td>
-                        
-
-                                                                                                       
+                                                                                 
                         <td> 
                             <a class="btn btn-info" th:href="@{/prestamo/registro/__${libro.id}__}" role="button">Pedir</a>
                            
                         </td>
                         <td th:text="${libro.ejemplares}"> </td>
-<!--                         <td th:text="${libro.ejemplaresPrestados}"> </td>
-                          <td th:text="${libro.ejemplaresRestantes}"> </td>-->
-
-<!--                       <td> 
-                          
-                           <a class="btn btn-outline-success" sec:authorize="hasRole('ADMIN')" th:href="@{/libro/alta/__${libro.id}__}" role="button">Alta</a>
-                           <a class="btn btn-outline-danger" sec:authorize="hasRole('ADMIN')" th:href="@{/libro/baja/__${libro.id}__}" role="button">Baja</a>                          
-                          <a class="btn btn-outline-secondary" sec:authorize="hasRole('ADMIN')" th:href="@{/libro/modificar/__${libro.id}__}" role="button">Editar</a>
-
-                        </td>-->
-
-
+                         <td th:text="${libro.ejemplaresPrestados}"> </td>
+                          <td th:text="${libro.ejemplaresRestantes}"> </td>
                     </tr>
-                    <tr>
-                        <th scope="row"> </th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                 
+                   
                 </tbody>
             </table>
 

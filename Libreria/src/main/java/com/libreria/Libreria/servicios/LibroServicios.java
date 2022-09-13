@@ -109,14 +109,15 @@ public class LibroServicios {
 
 
 //Listas o Busquedas
-           
-    @Transactional(readOnly = true)
-    public List<Libro> listarTodos() {
-        return lrepositorio.findAll();
+
+    public List<Libro> listarTodos(String palabra) {
+        if (palabra != null) {
+             return lrepositorio.findAll(palabra);
+        }
+       return lrepositorio.findAll();
     }
     
 
-      @Transactional
     public Libro buscarLibroID(String id) throws ErrorServicio {
         Optional<Libro> respuesta = lrepositorio.findById(id);
         if (respuesta.isPresent()) {
@@ -127,13 +128,11 @@ public class LibroServicios {
         }
     }
     
-    @Transactional
     public Libro buscarPorTitulo(String titulo) throws ErrorServicio {
         return lrepositorio.buscarPorTitulo(titulo);
     }
     
 
-    
        @Transactional(readOnly = true)
     public List<Libro> buscaPorEditorial(String nombre) throws ErrorServicio{
     

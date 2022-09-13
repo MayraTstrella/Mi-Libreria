@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="/fragments/head :: head"> </head>
@@ -22,27 +21,27 @@
                 </div>
             </div>                               
            
-            <h2>Editar libro </h2>
-          
+            <h2>Modificar Libro </h2>
+            <br>
 
             <form class="formulario" th:action="@{'/libro/modificar/' + ${id}}" method="POST" enctype="multipart/form-data" >
                      <input type="hidden" th:value= "${id}" name="id">
                     
                              <div class="container">
                     <div class="form-group">
-                        <label>Isbn</label> <input type="text" class="form-control" name="isbn" placeholder=" ">
+                        <label>Isbn</label> <input type="text" class="form-control" name="isbn" th:value="${libro.isbn}">
                     
-                        <label>Titulo</label> <input type="text" class="form-control" name="titulo" placeholder=" ">
+                        <label>Titulo</label> <input type="text" class="form-control" name="titulo"th:value="${libro.titulo}">
             
-                        <label>Año</label> <input type="text" class="form-control" name="anio" placeholder=" ">
+                        <label>Año</label> <input type="text" class="form-control" name="anio" th:value="${libro.anio}">
                     
-                        <label>Ejemplares</label> <input type="number" class="form-control" name="ejemplares" placeholder=" ">
+                        <label>Ejemplares</label> <input type="number" class="form-control" name="ejemplares" th:value="${libro.ejemplares}">
                               
                        <label>Foto</label> <input type="file" class="form-control" name="archivo" placeholder=" ">
                                  
-                        <label>Ejemplares Prestados</label> <input type="number" class="form-control" name="ejemplaresPrestados" placeholder=" ">
+                        <label>Ejemplares Prestados</label> <input type="number" class="form-control" name="ejemplaresPrestados"th:value="${libro.ejemplaresPrestados}">
            
-                        <label>Ejemplares Restantes</label> <input type="number" class="form-control" name="ejemplaresRestantes" placeholder=" ">
+                        <label>Ejemplares Restantes</label> <input type="number" class="form-control" name="ejemplaresRestantes" th:value="${libro.ejemplaresRestantes}">
                 
                         <label > Seleccionar Autor</label>
                         <select class="form-control" name="idAutor">

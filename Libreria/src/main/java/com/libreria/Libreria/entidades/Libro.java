@@ -25,8 +25,6 @@ public class Libro {
     private Integer ejemplaresRestantes;
     private Boolean alta;
 
-    
-
     @ManyToOne (cascade = CascadeType.ALL)
     private Autor autor;
     

@@ -4,14 +4,12 @@ package com.libreria.Libreria.controladores;
 import com.libreria.Libreria.entidades.Usuario;
 import com.libreria.Libreria.errores.ErrorServicio;
 import com.libreria.Libreria.servicios.UsuarioServicios;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,18 +24,19 @@ public class UsuarioControlador {
     
     @GetMapping("/registro")
     public String formulario() {
+        
         return "registrousuario";
     }
     
  
     @PostMapping("/registro")
-    public String guardarUsuario(ModelMap modelo, Long dni, @RequestParam String nombreC, @RequestParam String telefono, @RequestParam String mail, @RequestParam String clave, @RequestParam String clave2) throws ErrorServicio{
+    public String guardarUsuario(ModelMap modelo, @RequestParam(required=false) Long dni, @RequestParam String nombreC, @RequestParam String telefono, @RequestParam String mail, @RequestParam String clave, @RequestParam String clave2) throws ErrorServicio{
 
             try {
-                
-                uservicio.guardarUsuario(dni, nombreC, telefono, mail, clave, clave2);
-                modelo.put("exito", "Registro exitoso!");
-            return "login";
+             
+               uservicio.guardarUsuario(dni, nombreC, telefono, mail, clave, clave2);
+               modelo.put("exito", "Usuario Registrado!");
+            return "redirect:/login";
 
         } catch (ErrorServicio ex) {
             modelo.put("dni", dni);
@@ -45,51 +44,52 @@ public class UsuarioControlador {
             modelo.put("nombreC", nombreC);
             modelo.put("telefono", telefono);
             modelo.put("mail", mail);
-            
+
             return "registrousuario";
         }
     }
-    
-     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
-    @GetMapping("/editar-perfil")
-    public String actualizarPerfil(HttpSession session, @RequestParam String id, ModelMap modelo) {
+ 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
+    @GetMapping("/modificar")
+    public String modificar(ModelMap modelo, HttpSession session, @RequestParam(required=false) String id) throws ErrorServicio{
+   
         
         Usuario login = (Usuario) session.getAttribute("usuariosession");
-        if (login == null || !login.getId().equals(id)) {
-            return "redirect:/inicio";
-        }
+   
         try {
             Usuario usuario = uservicio.buscarUsuarioID(id);
-            modelo.addAttribute("perfil", usuario);
+            modelo.put("usuario", usuario);
+         
         } catch (ErrorServicio ex) {
-            modelo.addAttribute("error", ex.getMessage());
+            throw new ErrorServicio(ex.getMessage());
+           
         }
-        return "perfilusuario";
+        return "modificarUser";
     }
     
-    
-      @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
-    @PostMapping("/actualizar-perfil")
-    public String actualizar(ModelMap modelo, HttpSession session, Long dni, @RequestParam String id, @RequestParam String nombreC, @RequestParam String telefono, @RequestParam String mail, @RequestParam String clave, @RequestParam String clave2) throws ErrorServicio {
-        Usuario usuario = null;
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
+    @PostMapping("/modificar")
+    public String modificarUser(ModelMap modelo, HttpSession session, @RequestParam(required=false) String id, @RequestParam(required=false) Long dni, @RequestParam String nombreC, @RequestParam String telefono, @RequestParam String mail, @RequestParam String clave, @RequestParam String clave2) {
+
         try {
             Usuario login = (Usuario) session.getAttribute("usuariosession");
-            if(login == null || !login.getId().equals(id)) {
-                return "redirect:/inicio";
-            }
-            usuario = uservicio.buscarUsuarioID(id);
-            uservicio.modificarUsuario(id, dni, nombreC, telefono, mail, clave, clave2);
-            session.setAttribute("usuariosession", usuario);
+      
+            Usuario usuario = uservicio.buscarUsuarioID(login.getId());
+            uservicio.modificarUsuario(usuario.getId(), dni, nombreC, telefono, mail, clave, clave2);
             
-            return "redirect:/inicio";
+            session.setAttribute("usuariosession", usuario);
+            modelo.put("exito", "Modificación exitosa");
+            
+            return "modificarUser";
         } catch (ErrorServicio ex) {
             modelo.put("dni", dni);
-            modelo.put("Error", ex.getMessage());
+            modelo.put("error", ex.getMessage());
             modelo.put("nombreC", nombreC);
             modelo.put("telefono", telefono);
             modelo.put("mail", mail);
+            
+            return "modificarUser";
         }
-        return "perfilusuario";
     }
-
+   
 }

@@ -47,7 +47,8 @@ public class EditorialControlador {
     public String modificarEd(ModelMap modelo, @PathVariable String id) throws ErrorServicio{
         
         try {
-            modelo.put("autor", eservicio.buscarEditID(id));
+            Editorial editorial = eservicio.buscarEditID(id);
+            modelo.put("editorial", editorial);
         } catch (ErrorServicio ex) {
             throw new ErrorServicio(ex.getMessage());
         }
@@ -59,10 +60,13 @@ public class EditorialControlador {
     public String modificarEd(ModelMap modelo, @PathVariable String id, @RequestParam String nombre) {
         
         try {
-            eservicio.modificarEd(id, nombre);
+            Editorial editorial = eservicio.buscarEditID(id);
+            eservicio.modificarEd(editorial.getId(), nombre);
+            modelo.put("editorial", editorial);
             modelo.put("exito", "Modificación exitosa");
             return "redirect:/admin/dashboard";
         } catch (ErrorServicio ex) {
+          
             modelo.put("error", ex.getMessage());
             return "accesoAdmin";
         }
