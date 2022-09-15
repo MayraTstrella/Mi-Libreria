@@ -9,8 +9,14 @@
            
            <h2 class="display-5 text-center titulo">Administración</h2>
 
-           <br>
-        <h2>Usuarios</h2>
+        
+        <h2 class="tituloadmin">Usuarios</h2>
+        
+                <form class="form-inline" th:action="@{/admin/dashboard}">
+    <input class="form-control mr-sm-2" type="text" name="palabrauser" id="palabrauser" th:value="${palabrauser}" placeholder="Ingrese id, dni, nombre o email" aria-label="Search">
+    <button class="btn btn-info btfc my-2 my-sm-0" type="submit">Filtrar</button>
+      </form>
+        <br>
 
         <div class="table-responsive">
             <table class="table table-borderless">
@@ -46,8 +52,14 @@
             </table>
 
         </div>
+        
 
-        <h2>Prestamos</h2>
+        <h2 class="tituloadmin">Prestamos</h2>
+               <form class="form-inline" th:action="@{/admin/dashboard}">
+    <input class="form-control mr-sm-2" type="text" name="palabrapr" id="palabrapr" th:value="${palabrapr}" placeholder="Ingrese id, libro o cliente" aria-label="Search">
+    <button class="btn btn-info btfc my-2 my-sm-0" type="submit">Filtrar</button>
+      </form>
+        <br>
 
         <div class="table-responsive">
             <table class="table table-borderless">
@@ -71,7 +83,7 @@
                         <td th:text="${prestamo.usuario.nombreC}"> </td>
                         <td> <a class="btn btn-success" th:href="@{/admin/altap/__${prestamo.id}__}" role="button">Alta</a>
 
-                            <a class="btn btn-danger" th:href="@{/admin/bajap/__${prestamo.id}__}" role="button">Baja</a>
+                               <a class="btn btn-danger" th:href="@{/admin/bajap/__${prestamo.id}__}" role="button">Baja</a>
                         </td>
                     </tr>
 
@@ -80,7 +92,7 @@
 
         </div>
         
-        <h2>Libros</h2>
+        <h2 class="tituloadmin">Libros</h2>
         
         <form class="form-inline" th:action="@{/admin/dashboard}">
     <input class="form-control mr-sm-2" type="text" name="palabra" id="palabra" th:value="${palabra}" placeholder="Ingrese título, autor o editorial" aria-label="Search">
@@ -144,8 +156,12 @@
                   </div>
         
         
-        <h2>Autores</h2>
-        
+        <h2 class="tituloadmin">Autores</h2>
+                <form class="form-inline" th:action="@{/admin/dashboard}">
+    <input class="form-control mr-sm-2" type="text" name="palabraaut" id="palabraaut" th:value="${palabraaut}" placeholder="Ingrese id o nombre" aria-label="Search">
+    <button class="btn btn-info btfc my-2 my-sm-0" type="submit">Filtrar</button>
+      </form>
+        <br>
                 <div class="table-responsive">
       <table class="table table-borderless">
   <thead class="theads">
@@ -173,8 +189,12 @@
 
             </div>
         
-        <h2>Editoriales</h2>
-        
+        <h2 class="tituloadmin">Editoriales</h2>
+                      <form class="form-inline" th:action="@{/admin/dashboard}">
+    <input class="form-control mr-sm-2" type="text" name="palabraed" id="palabraed" th:value="${palabraed}" placeholder="Ingrese id o nombre" aria-label="Search">
+    <button class="btn btn-info btfc my-2 my-sm-0" type="submit">Filtrar</button>
+      </form>
+        <br>
               <div class="table-responsive">
             <table class="table table-borderless">
                 <thead class="theads" >

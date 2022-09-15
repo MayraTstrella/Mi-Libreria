@@ -124,27 +124,26 @@ public class PrestamoServicios {
             return prepositorio.listarPUsuario(id);
         }
         
-        @Transactional(readOnly = true)
         public List<Prestamo> buscarPorFecha (Date fechaPrestamo ) {
-
         return prepositorio.buscarPorFecha(fechaPrestamo);
         }
 
-        @Transactional(readOnly = true)
         public List<Prestamo> buscarPorFechaDev (Date fechaDev) {
-
         return prepositorio.buscarPorFechaDev(fechaDev);
         }
-
         
-        @Transactional(readOnly = true)
         public List<Prestamo> listarTodos() {
         return prepositorio.findAll();
         }
         
-        public List<Prestamo> listarTodosAlta (Boolean alta) {
-            return prepositorio.listarTodosAlta(alta);
+        public List<Prestamo> listaBuscar(String palabrapr, Boolean alta) {
+            if (palabrapr != null) {
+                return prepositorio.findAll(palabrapr, alta);
+            }
+        return prepositorio.findAll();
         }
+        
+
         
         
         public void validarDatos(Usuario usuario, Date fechaPrestamo, Date fechaDev) throws ErrorServicio {

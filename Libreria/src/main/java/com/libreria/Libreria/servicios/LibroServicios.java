@@ -29,7 +29,7 @@ public class LibroServicios {
     @Autowired
     private FotoServicios fservicio;
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Error.class})
+    @Transactional
     public void cargarLibro(MultipartFile archivo, Long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, String idAutor, String idEditorial) throws ErrorServicio {
 
         Autor autor = aservicio.buscarAutorID(idAutor);
@@ -132,16 +132,12 @@ public class LibroServicios {
         return lrepositorio.buscarPorTitulo(titulo);
     }
     
-
-       @Transactional(readOnly = true)
     public List<Libro> buscaPorEditorial(String nombre) throws ErrorServicio{
     
         return lrepositorio.buscarLibroPorEditorial(nombre);
             
     }
-   
-    
-    
+
     @Transactional
     public void darBaja(String id) throws ErrorServicio {
 
@@ -158,7 +154,6 @@ public class LibroServicios {
 
     }
     
-
     @Transactional
     public void darAlta(String id) throws ErrorServicio {
 

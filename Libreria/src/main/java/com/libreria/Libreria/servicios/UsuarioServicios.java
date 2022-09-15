@@ -68,7 +68,6 @@ public class UsuarioServicios  implements UserDetailsService {
         }
     }
     
-        @Transactional
     public Usuario buscarUsuarioID(String id) throws ErrorServicio {
         Optional<Usuario> respuesta = urepositorio.findById(id);
         if (respuesta.isPresent()) {
@@ -79,19 +78,20 @@ public class UsuarioServicios  implements UserDetailsService {
         }
     }
     
-    
-    @Transactional(readOnly = true)
     public Usuario buscarPorNombre (String nombre) throws ErrorServicio {
-        
         return urepositorio.buscarPorNombre(nombre);
     }
 
-    @Transactional(readOnly = true)
     public List<Usuario> listarTodos() {
         return urepositorio.findAllActive();
     }
-    
-    
+
+    public List<Usuario> listaBuscar(String palabrauser) {
+        if (palabrauser != null) {
+            return urepositorio.findAll(palabrauser);
+        }
+        return urepositorio.findAllActive();
+    }
     
     //Alta Baja
 

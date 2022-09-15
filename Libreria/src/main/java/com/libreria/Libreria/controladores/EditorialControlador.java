@@ -5,6 +5,7 @@ import com.libreria.Libreria.errores.ErrorServicio;
 import com.libreria.Libreria.servicios.EditorialServicios;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -74,10 +75,11 @@ public class EditorialControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
     @GetMapping("/listareditorial")
-    public String lista(ModelMap modelo) {
+    public String lista(ModelMap modelo, @Param("palabraed") String palabraed) {
 
-        List<Editorial> editorialesLista = eservicio.listarTodos();
+        List<Editorial> editorialesLista = eservicio.listaBuscar(palabraed);
         modelo.addAttribute("editoriales", editorialesLista);
+        modelo.put("palabraed", palabraed);
 
         return "listareditorial";
     }

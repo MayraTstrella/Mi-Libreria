@@ -5,6 +5,7 @@ import com.libreria.Libreria.errores.ErrorServicio;
 import com.libreria.Libreria.servicios.AutorServicios;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -77,10 +78,11 @@ public class AutorControlador {
    
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')")
     @GetMapping("/listarautor")
-    public String lista(ModelMap modelo) {
+    public String lista(ModelMap modelo, @Param("palabraaut") String palabraaut) {
 
-        List<Autor> autoresLista = aservicio.listarTodos();
+        List<Autor> autoresLista = aservicio.listaBuscar(palabraaut);
         modelo.addAttribute("autores", autoresLista);
+        modelo.put("palabra", palabraaut);
 
         return "listarautor";
     }

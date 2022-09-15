@@ -39,24 +39,28 @@ public class AdminControlador {
     private EditorialServicios eservicio;
     
     @GetMapping("/dashboard")
-    public String accesoAdmin(ModelMap modelo, @Param("palabra") String palabra) {
+    public String accesoAdmin(ModelMap modelo, @Param("palabra, palabraaut, palabraed, palabrauser, palabrapr, alta") String palabra, String palabraaut, String palabraed, String palabrauser, String palabrapr, Boolean alta) {
         
-        List<Usuario> usuarios = uservicio.listarTodos();
+        List<Usuario> usuarios = uservicio.listaBuscar(palabrauser);
            
-        List<Prestamo> prestamos = pservic.listarTodosAlta(true);
+        List<Prestamo> prestamos = pservic.listaBuscar(palabrapr,true);
         
         List<Libro> librosLista = lservicio.listarTodos(palabra);
          
-        List<Autor> autoresLista = aservicio.listarTodos();
+        List<Autor> autoresLista = aservicio.listaBuscar(palabraaut);
          
-        List<Editorial> editorialesLista = eservicio.listarTodos();
+        List<Editorial> editorialesLista = eservicio.listaBuscar(palabraed);
 
         modelo.put("usuarios", usuarios);
+        modelo.put("palabrauser", palabrauser);
         modelo.put("prestamos", prestamos);
+        modelo.put("palabrapr", palabrapr);
         modelo.put("libros", librosLista);
         modelo.put("palabra", palabra);
         modelo.put("autores", autoresLista);
+        modelo.put("palabraaut", palabraaut);
         modelo.put("editoriales", editorialesLista);
+        modelo.put("palabraed", palabraed);
         
         return "accesoAdmin";
     }
@@ -65,7 +69,6 @@ public class AdminControlador {
     //USUARIOS
      @GetMapping("/baja/{id}")
     public String baja(@PathVariable String id) {
-
         try {
             uservicio.darBajaUsuario(id);
             return "redirect:/admin/dashboard";
@@ -77,7 +80,6 @@ public class AdminControlador {
    
     @GetMapping("/alta/{id}")
     public String alta(@PathVariable String id) {
-
         try {
             uservicio.darAltaUsuario(id);
            return "redirect:/admin/dashboard";

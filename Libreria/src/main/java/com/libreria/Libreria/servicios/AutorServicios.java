@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -16,7 +15,7 @@ public class AutorServicios {
     @Autowired
     private AutorRepositorio arepositorio;
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Error.class})
+    @Transactional
     public Autor cargarAutor(String nombre) throws ErrorServicio {
         validarDatosA(nombre);
         Autor autor = new Autor();
@@ -28,8 +27,7 @@ public class AutorServicios {
     }
 
 //Busquedas
-
-    @Transactional
+    
     public Autor buscarAutorID(String id) throws ErrorServicio {
         Optional<Autor> respuesta = arepositorio.findById(id);
         if (respuesta.isPresent()) {
@@ -42,8 +40,15 @@ public class AutorServicios {
     
     //Listas
 
-    @Transactional(readOnly = true)
+    public List<Autor> listaBuscar(String palabraaut) {
+        if (palabraaut != null) {
+            return arepositorio.findAll(palabraaut);
+        }
+        return arepositorio.findAll();
+    }
+    
     public List<Autor> listarTodos() {
+      
         return arepositorio.findAll();
     }
     

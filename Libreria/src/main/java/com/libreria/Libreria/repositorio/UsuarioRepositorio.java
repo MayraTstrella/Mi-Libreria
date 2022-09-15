@@ -23,5 +23,9 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, String>{
     @Query ("SELECT u FROM Usuario u WHERE u.alta IS TRUE")
     public List<Usuario> findAllActive ();
  
+       @Query("SELECT u FROM Usuario u WHERE "
+                    + "CONCAT(u.id, u.nombreC, u.mail, u.dni)"
+                    + "LIKE %?1% ")
+    public List<Usuario> findAll(@Param("palabrauser") String palabrauser);
     
 }

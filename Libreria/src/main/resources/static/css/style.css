@@ -69,6 +69,10 @@ header {
     margin-bottom: 30px;
 }
 
+.tituloadmin {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
 .nombrec {
     font-weight: bolder;
     font-size: larger;
@@ -110,7 +114,7 @@ footer{
     list-style: none;  
     display: flex;
     flex-flow: row;
-    justify-content: center;
+    justify-content: flex-start;
 }  
 
 .footerhead > li {
@@ -123,7 +127,7 @@ footer{
     list-style: none;
     display: flex;
     flex-flow: row;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .footerbody > li {
